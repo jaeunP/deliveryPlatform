@@ -1,1 +1,4 @@
 rootProject.name = 'deliveryPlatform'
+include 'api'
+include 'db'
+

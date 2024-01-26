@@ -1,6 +1,7 @@
 package com.api.domain.user.service;
 
 import com.api.common.error.ErrorCode;
+import com.api.common.error.UserErrorCode;
 import com.api.common.exception.ApiException;
 import com.db.user.UserEntity;
 import com.db.user.UserRepository;
@@ -29,5 +30,16 @@ public class UserService {
 
                 })
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT, "User Entity Null"));
+    }
+
+    public UserEntity login(String email, String password) {
+
+        var entity = getUserWithThrow(email, password);
+        return entity;
+    }
+
+    public UserEntity getUserWithThrow(String email, String password) {
+        return userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc(email, password, UserStatus.REGISTERED)
+                .orElseThrow(() -> new ApiException(UserErrorCode.User_NOT_FOUND));
     }
 }

@@ -7,6 +7,7 @@ import com.api.domain.user.controller.model.UserLoginRequest;
 import com.api.domain.user.controller.model.UserRegisterRequest;
 import com.api.domain.user.controller.model.UserResponse;
 import com.api.domain.user.converter.UserConverter;
+import com.api.domain.user.model.User;
 import com.api.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 
@@ -49,5 +50,12 @@ public class UserBusiness {
         var tokenResponse = tokenBusiness.issueToken(userEntity);
 
         return tokenResponse;
+    }
+
+    public UserResponse me(User user) {
+        var userEntity = userService.getUserWithThrow(user.getId());
+        var response = userConverter.toResponse(userEntity);
+
+        return response;
     }
 }

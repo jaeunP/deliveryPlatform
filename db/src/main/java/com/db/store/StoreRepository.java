@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface storeRepository extends JpaRepository<StoreEntity, Long> {
+public interface StoreRepository extends JpaRepository<StoreEntity, Long> {
 
     //유효한 스토어
     //select * from store where id = ? and status = 'REGISTERED'
-    Optional<StoreEntity> findFirstByIdAndStatusOrderByIdDesc(Long id, String status);
+    Optional<StoreEntity> findFirstByIdAndStatusOrderByIdDesc(Long id, StoreStatus status);
 
     //유효한 스토어 리스트
     //select * from store where status = ? order by id desc

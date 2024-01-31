@@ -41,7 +41,7 @@ public class StoreEntity extends BaseEntity {
     private String thumbnailUrl;
 
     @Column(precision = 11, scale = 4, nullable = false)
-    private BigDecimal minimumAccount;
+    private BigDecimal minimumAmount;
 
     @Column(precision = 11, scale = 4, nullable = false)
     private BigDecimal minimumDeliveryAmount;
